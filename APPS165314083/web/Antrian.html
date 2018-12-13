@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Rumah Sakitku</title>
+        <!-- Bootstrap core CSS -->
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom fonts for this template -->
+        <link href="css/Montserrat.css" rel="stylesheet">
+        <link href="css/Kaushan.css" rel="stylesheet">
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="css/Droid.css" rel="stylesheet">
+        <link href="css/Roboto.css" rel="stylesheet">
+
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 40%;
+
+
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 10px;
+                position: relative;
+                right:-490px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+        </style>
+
+        <!-- Custom styles for this template -->
+        <link href="css/agency.min.css" rel="stylesheet">
+
+    </head>
+
+    <body id="page-top">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="index.html">RUMAH SAKIT</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="pasienDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Pasien
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="pasienDropdown">
+                                <a class="dropdown-item" href="formpendaftaran.html">Tambah pasien</a>
+                                <a class="dropdown-item" href="formcari.html">Cari Pasien</a>
+                                <a class="dropdown-item" href="Pasien.html">Daftar Pasien</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="klinikDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Antrian
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="klinikDropdown">
+                                <a class="dropdown-item" href="formantrian.html">Tambah Antrian</a>
+                                <a class="dropdown-item" href="Antrian.html">Daftar Antrian</a>
+                            </div>
+                        </li>
+
+
+
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Header -->
+        <header class="masthead">
+            <div class="container">
+                <div class="intro-text">
+                    <div class="intro-lead-in">Selamat datang </div>
+                    <div class="intro-heading text-uppercase">RUMAH SAKITKU</div>
+                </div>
+            </div>
+        </header>
+
+        <br>
+    <center><button type="button" onclick="loadDoc()" id="btn">Daftar Antrian</button><br><br></center>
+
+    <div id="demo"></div>
+    <script>
+        function loadDoc() {
+            var xmlhttp = new XMLHttpRequest()
+
+                    ;
+            var url = "http://202.94.83.190:8080/165314083RSKu/webresources/antrian";
+
+            xmlhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    myFunction(this.responseText);
+                }
+            }
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+
+            function myFunction(response) {
+                var arr = JSON.parse(response);
+                var i;
+
+                var out = "<table>";
+
+                for (i = 0; i < arr.length; i++) {
+                    out += "<tr><td>" +
+                            arr[i].id +
+                            "</td><td>" +
+                            arr[i].tanggal +
+                            "</td><td>" +
+                            arr[i].noRm +
+                            "</td><td>" +
+                            arr[i].nama +
+                            "</td><td>" +
+                            arr[i].alamat +
+                            "</td><td>" +
+                            arr[i].namaKlinik;
+
+                }
+
+                out += "</table>";
+                document.getElementById("demo").innerHTML = out;
+            }
+        }
+    </script>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; Rumah Sakitku 2018</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li class="list-inline-item">
+                            <a href="#">Privacy Policy</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Custom scripts for this template -->
+    <script src="js/agency.min.js"></script>
+
+</body>
+
+</html>

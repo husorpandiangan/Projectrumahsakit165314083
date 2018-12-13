@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="styles/login.css">
+    </head>
+    <body>
+        <div class="login-page">
+  <div class="form">
+    <form class="register-form">
+      <input type="text" placeholder="name"/>
+      <input type="password" placeholder="password"/>
+      <input type="text" placeholder="email address"/>
+      <button>create</button>
+      <p class="message">Already registered? <a href="#">Sign In</a></p>
+    </form>
+    <form class="login-form">
+      <input type="text" id="b" placeholder="username"/>
+      <input type="password" id="a" placeholder="password"/>
+      <button type="button" onclick="loadDoc()">login</button>
+        <script>
+            function loadDoc() {
+                var email = b.value;
+                var pw = a.value;
+               
+                var url = 'http://202.94.83.190:8080/165314083RSKu/webresources/user/login?email=' + email + '&password=' + pw;
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var user = JSON.parse(this.responseText);
+                        if(user !== null){ 
+                            window.open("index2.html", "_self");
+                        }else{
+                            alert("Login Gagal");
+                        }
+                      
+                        document.getElementById("demo").innerHTML =
+                                this.responseText;
+                    }
+                };
+                xhttp.open("GET", url, true);
+                xhttp.send();
+            }
+            
+        </script>
+      <p class="message">Not registered? <a href="#">Create an account</a></p>
+    </form>
+  </div>
+</div>
+    </body>
+</html>
